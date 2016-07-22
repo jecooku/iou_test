@@ -1,0 +1,20 @@
+<h1>New loan offer</h1>
+<h1><%= current_user.id %></h1>
+
+<%= form_for(@loan_offer, :url => loan_offers_path(:user_id => current_user.id), :html => {:method => :post}) do |f| %>
+    <% if @loan_offer.errors.any? %>
+        <div class="error_messages">
+          <h2>Form is invalid</h2>
+          <ul>
+            <% @loan_offer.errors.full_messages.each do |message| %>
+                <li><%= message %></li>
+            <% end %>
+          </ul>
+        </div>
+    <% end %>
+
+    <%= render(:partial => 'form', :locals => {:f => f}) %>
+
+    <%= submit_tag 'Submit loan offer', :class => 'btn btn-success' %>
+
+<% end %>
