@@ -11,7 +11,18 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160722025637) do
+ActiveRecord::Schema.define(version: 20160722071202) do
+
+  create_table "loan_offers", force: :cascade do |t|
+    t.integer  "user_id"
+    t.string   "term"
+    t.string   "usage"
+    t.datetime "created_at",                         null: false
+    t.datetime "updated_at",                         null: false
+    t.decimal  "amount",     precision: 8, scale: 2
+  end
+
+  add_index "loan_offers", ["user_id"], name: "index_loan_offers_on_user_id"
 
   create_table "password_resets", force: :cascade do |t|
     t.integer  "user_id"

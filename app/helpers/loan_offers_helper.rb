@@ -1,0 +1,2 @@
+module LoanOffersHelper
+end

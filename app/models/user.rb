@@ -1,8 +1,10 @@
 class User < ActiveRecord::Base
   has_secure_password
-  has_many :password_resets
 
-  before_create { generate_token(auth_token) }
+  has_many :password_resets
+  has_many :loan_offers
+
+  before_create { generate_token(:auth_token) }
 
   validates_uniqueness_of :email
   validates_presence_of :password_digest, on: :create

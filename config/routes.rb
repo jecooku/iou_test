@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
 
+  resources :loan_offers
   get 'public/index'
 
   root to: 'public#index'
@@ -7,6 +8,7 @@ Rails.application.routes.draw do
   resources :users
   resources :sessions
   resources :password_resets
+  resources :loan_offers
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
