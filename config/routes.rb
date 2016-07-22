@@ -1,9 +1,12 @@
 Rails.application.routes.draw do
+
   get 'public/index'
 
   root to: 'public#index'
 
   resources :users
+  resources :sessions
+  resources :password_resets
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
