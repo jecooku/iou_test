@@ -11,7 +11,15 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160722071202) do
+ActiveRecord::Schema.define(version: 20160722074215) do
+
+  create_table "loan_alterations", force: :cascade do |t|
+    t.integer  "loan_offer_id"
+    t.datetime "created_at",    null: false
+    t.datetime "updated_at",    null: false
+  end
+
+  add_index "loan_alterations", ["loan_offer_id"], name: "index_loan_alterations_on_loan_offer_id"
 
   create_table "loan_offers", force: :cascade do |t|
     t.integer  "user_id"

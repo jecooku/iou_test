@@ -15,4 +15,8 @@ class ApplicationController < ActionController::Base
     redirect_to new_session_path, :alert => 'You have not logged in' if current_user.nil?
   end
 
+  def password_changed_users
+    @password_changed_users = User.pluck(:password_resets).where('created_at >= ?', 1.day.ago).count > 3
+  end
+
 end

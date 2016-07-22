@@ -21,7 +21,12 @@ class LoanOffersController < ApplicationController
 
   def update
     @loan_offer = LoanOffer.find_by_user_id(params[:id])
+    old_amount = @loan_offer.amount
     if @loan_offer.update_attributes(loan_offer_params)
+      new_amount = @loan_offer.amount
+      if new_amount != old_amount
+        @loan_offer.loan_alterations.create
+      end
       flash[:notice] = 'Loan offer successfully updated'
       redirect_to root_url
     else

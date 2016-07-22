@@ -1,11 +1,12 @@
 class PasswordResetsController < ApplicationController
+
   def new
   end
 
   def create
     user = User.find_by_email(params[:email])
     user.send_password_reset if user
-    redirect_to root_url, :notice => 'password reset instructions sent'
+    redirect_to new_session_path, :notice => 'password reset instructions sent'
   end
 
   def edit
@@ -37,4 +38,5 @@ class PasswordResetsController < ApplicationController
   def password_reset_params
     params.require(:user).permit(:password, :password_confirmation)
   end
+
 end
