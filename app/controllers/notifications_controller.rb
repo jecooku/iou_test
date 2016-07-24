@@ -1,7 +1,9 @@
 class NotificationsController < ApplicationController
 
   def index
-    @notifications = Notification.all
+    Notification.find_in_batches(batch_size: 500) do |groups|
+      @notifications = groups.paginate(:page => params[:page], :per_page => 5)
+    end
   end
 
   def new

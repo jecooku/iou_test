@@ -15,7 +15,11 @@ class UsersController < ApplicationController
   end
 
   def users_amount_change
-    @users = User.joins(:loan_offers => :loan_alterations).group("strftime('%Y,%W', loan_alterations.created_at)").group(:user_id).having('count(*) >= ?', 3).uniq
+    User.joins(:loan_offers => :loan_alterations).group("strftime('%Y,%W',
+      loan_alterations.created_at)").group(:user_id).having('count(*) >= ?', 3).
+        uniq.find_in_batches(batch_size: 500) do |groups|
+      @users = groups.paginate(:page => params[:page], :per_page => 5)
+    end
   end
 
   private
