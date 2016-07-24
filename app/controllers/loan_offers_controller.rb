@@ -26,6 +26,9 @@ class LoanOffersController < ApplicationController
       new_amount = @loan_offer.amount
       if new_amount != old_amount
         @loan_offer.loan_alterations.create
+        if @loan_offer.loan_alterations.where('loan_alterations.created_at >= ?', 1.week.ago).count > 3
+          Notification.create(:user => current_user.email, :message => :loan_amount)
+        end
       end
       flash[:notice] = 'Loan offer successfully updated'
       redirect_to root_url

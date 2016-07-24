@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160722074215) do
+ActiveRecord::Schema.define(version: 20160723175101) do
 
   create_table "loan_alterations", force: :cascade do |t|
     t.integer  "loan_offer_id"
@@ -31,6 +31,13 @@ ActiveRecord::Schema.define(version: 20160722074215) do
   end
 
   add_index "loan_offers", ["user_id"], name: "index_loan_offers_on_user_id"
+
+  create_table "notifications", force: :cascade do |t|
+    t.integer  "message"
+    t.string   "user"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
 
   create_table "password_resets", force: :cascade do |t|
     t.integer  "user_id"

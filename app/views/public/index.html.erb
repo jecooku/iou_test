@@ -5,3 +5,7 @@
 <% else %>
     <%= link_to 'Change loan application', edit_loan_offer_path(:id => current_user.id), :class => 'btn btn success' %>
 <% end %>
+
+<%= link_to 'Notifications', notifications_path, :class => 'btn btn success' %>
+
+<%= link_to 'Users with loan amount changed 3 or more times', users_users_amount_change_path, :class => 'btn btn success' %>

@@ -14,9 +14,14 @@ class UsersController < ApplicationController
     end
   end
 
+  def users_amount_change
+    @users = User.joins(:loan_offers => :loan_alterations).group("strftime('%Y,%W', loan_alterations.created_at)").group(:user_id).having('count(*) >= ?', 3).uniq
+  end
+
   private
 
   def user_params
     params.require(:user).permit(:email, :password, :password_confirmation)
   end
+
 end

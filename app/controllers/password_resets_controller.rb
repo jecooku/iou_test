@@ -26,8 +26,9 @@ class PasswordResetsController < ApplicationController
       @user.password_resets.create
       if @user.password_resets.where('created_at >= ?', 1.day.ago).count > 3
         flash[:alert] = 'Password reset more than 3 times today'
+        Notification.create(:user => @user.email, :message => :password)
       end
-      redirect_to root_url, :notice => 'Password reset successfully'
+      redirect_to root_url
     else
       render 'edit'
     end
