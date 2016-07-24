@@ -1,11 +1,23 @@
 <h1>Public area</h1>
 
-<% if current_user.loan_offers.empty? %>
-    <%= link_to 'Apply for a loan', new_loan_offer_path, :class => 'btn btn success' %>
-<% else %>
-    <%= link_to 'Change loan application', edit_loan_offer_path(:id => current_user.id), :class => 'btn btn success' %>
-<% end %>
+<div class="col-md-12 col-md-offset-3">
+  <div class="col-md-5 lower-margin">
+    <% if current_user.loan_offers.empty? %>
+        <%= link_to 'Apply for a loan', new_loan_offer_path, :class => 'btn btn-success btn-block' %>
+    <% else %>
+        <%= link_to 'Change loan application', edit_loan_offer_path(:id => current_user.id), :class => 'btn btn-success btn-block' %>
+    <% end %>
+  </div>
+</div>
 
-<%= link_to 'Notifications', notifications_path, :class => 'btn btn success' %>
+<div class="col-md-12 col-md-offset-3">
+  <div class="col-md-5 lower-margin">
+    <%= link_to 'Notifications', notifications_path, :class => 'btn btn-success btn-block' %>
+  </div>
+</div>
 
-<%= link_to 'Users with loan amount changed 3 or more times', users_users_amount_change_path, :class => 'btn btn success' %>
+<div class="col-md-12 col-md-offset-3">
+  <div class="col-md-5 lower-margin">
+    <%= link_to 'Users with loan amount changed 3 or more times', users_users_amount_change_path, :class => 'btn btn-success btn-block' %>
+  </div>
+</div>
