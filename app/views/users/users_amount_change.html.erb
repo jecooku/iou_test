@@ -1,0 +1,18 @@
+<h1>Users who have changed the loan offer 3 or more times in a week (all-time)</h1>
+
+<%= will_paginate @users %>
+
+<table class="table table-striped">
+  <thead>
+  <tr>
+    <th>email</th>
+  </tr>
+  </thead>
+  <tbody>
+  <% @users.each do |user| %>
+      <tr>
+        <td><%= user.email %></td>
+      </tr>
+  <% end %>
+  </tbody>
+</table>

@@ -1,0 +1,28 @@
+<h1>Notifications</h1>
+
+<% unless @notifications.nil? %>
+  <%= will_paginate @notifications %>
+<% end %>
+
+<table class="table table-striped">
+  <thead>
+  <tr>
+    <th>Notification</th>
+    <th>Action</th>
+  </tr>
+  </thead>
+  <tbody>
+  <% unless @notifications.nil? %>
+    <% @notifications.each do |notification| %>
+        <tr>
+          <% if notification.password? %>
+              <td><%= notification.notify_password %></td>
+          <% else %>
+              <td><%= notification.notify_amount %></td>
+          <% end %>
+          <td><%= link_to 'Delete', notification_path(notification.id), method: 'delete' %></td>
+        </tr>
+    <% end %>
+  <% end %>
+  </tbody>
+</table>
