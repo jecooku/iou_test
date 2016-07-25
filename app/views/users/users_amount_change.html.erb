@@ -1,6 +1,8 @@
 <h1>Users who have changed the loan offer 3 or more times in a week (all-time)</h1>
 
-<%= will_paginate @users %>
+<% unless @users.nil? %>
+  <%= will_paginate @users %>
+<% end %>
 
 <table class="table table-striped">
   <thead>
@@ -9,10 +11,12 @@
   </tr>
   </thead>
   <tbody>
-  <% @users.each do |user| %>
-      <tr>
-        <td><%= user.email %></td>
-      </tr>
+  <% unless @users.nil? %>
+    <% @users.each do |user| %>
+        <tr>
+          <td><%= user.email %></td>
+        </tr>
+    <% end %>
   <% end %>
   </tbody>
 </table>
